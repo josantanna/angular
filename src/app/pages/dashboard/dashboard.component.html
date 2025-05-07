@@ -1,1 +1,57 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <div class="search-card card">
+      <h3>Buscar Veículo</h3>
+      <input type="text" placeholder="Digite o nome do modelo">
+      <div class="vehicle-options">
+        <div *ngFor="let vehicle of vehicles " 
+             class="vehicle-option" 
+             (click)="onVehicleSelect(vehicle)">
+          {{ vehicle.nome }}
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedVehicle" class="stats-container">
+      <div class="stat-card card">
+        <h4>Total de Vendas</h4>
+        <p>{{ selectedVehicle.vendas }}</p>
+      </div>
+      <div class="stat-card card">
+        <h4>Veículos Conectados</h4>
+        <p>{{ selectedVehicle.conectados }}</p>
+      </div>
+      <div class="stat-card card">
+        <h4>Software Atualizado</h4>
+        <p>{{ selectedVehicle.atualizados }}</p>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedVehicle" class="vehicle-image">
+      <img [src]="'assets/' + selectedVehicle.imagem" [alt]="selectedVehicle.nome">
+    </div>
+  
+    <div class="data-table card">
+      <h3>Dados dos Veículos</h3>
+      <input type="text" placeholder="Buscar por código">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Modelo</th>
+            <th>Status</th>
+            <th>Última Atualização</th>
+            <th>Versão Software</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredData">
+            <td>{{ item.codigo }}</td>
+            <td>{{ item.modelo }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.ultimaAtualizacao }}</td>
+            <td>{{ item.versaoSoftware }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
