@@ -12,4 +12,8 @@ export class HomeComponent {
   logout(): void {
     this.router.navigate(['/login']);
   }
+
+  acessarDashboard(){
+    this.router.navigate(['/dashboard'])
+  }
 }

@@ -4,9 +4,9 @@
       <button (click)="logout()" class="logout-btn">Logout</button>
     </div>
     <div class="background-image">
-        <img src="assets\ranger.png" alt="Ford Logo" class="logo" width="500px">
+        <img src="http://localhost:3001/img/ranger.png" alt="Ford Logo" class="logo" width="500px">
     </div>
-    <div class="dashboard-link">
+    <div class="dashboard-link" (click)="acessarDashboard()">
       <a routerLink="/dashboard">Acessar Dashboard</a>
     </div>
   </div>

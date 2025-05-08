@@ -1,7 +1,23 @@
 <div class="dashboard-container">
     <div class="search-card card">
       <h3>Buscar Veículo</h3>
-      <input type="text" placeholder="Digite o nome do modelo">
+      <div style="display: flex; flex-direction: row; gap: 1rem; overflow-x: auto;">
+        <app-card titulo="Veículo">
+          <div class="card-form">
+            <form [formGroup]="selecionarCarro">
+              <select name="" id="" formControlName = "lista">
+                <option value=""></option>
+                <option *ngFor="let carro of carrosList" value ="">{{carro.vehicle}}carro</option>
+              </select>
+            </form>
+          </div>
+        </app-card>
+        <app-card class="dash-card" titulo="Total de Vendas">{{totalvenda}}</app-card>
+        <app-card class="dash-card" titulo="Conectados"></app-card>
+        <app-card class="dash-card" titulo="Update Software"></app-card>
+      </div>
+      
+      <!-- <input type="text" placeholder="Digite o nome do modelo">
       <div class="vehicle-options">
         <div *ngFor="let vehicle of vehicles " 
              class="vehicle-option" 
@@ -9,9 +25,9 @@
           {{ vehicle.nome }}
         </div>
       </div>
-    </div>
+    </div> -->
   
-    <div *ngIf="selectedVehicle" class="stats-container">
+    <!-- <div *ngIf="selectedVehicle" class="stats-container">
       <div class="stat-card card">
         <h4>Total de Vendas</h4>
         <p>{{ selectedVehicle.vendas }}</p>
@@ -24,12 +40,12 @@
         <h4>Software Atualizado</h4>
         <p>{{ selectedVehicle.atualizados }}</p>
       </div>
-    </div>
+    </div> -->
   
-    <div *ngIf="selectedVehicle" class="vehicle-image">
+    <!-- <div *ngIf="selectedVehicle" class="vehicle-image">
       <img [src]="'assets/' + selectedVehicle.imagem" [alt]="selectedVehicle.nome">
     </div>
-  
+   -->
     <div class="data-table card">
       <h3>Dados dos Veículos</h3>
       <input type="text" placeholder="Buscar por código">
@@ -44,13 +60,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of filteredData">
+          <!-- <tr *ngFor="let item of filteredData">
             <td>{{ item.codigo }}</td>
             <td>{{ item.modelo }}</td>
             <td>{{ item.status }}</td>
             <td>{{ item.ultimaAtualizacao }}</td>
             <td>{{ item.versaoSoftware }}</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

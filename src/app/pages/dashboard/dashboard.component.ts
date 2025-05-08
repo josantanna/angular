@@ -1,13 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { CardComponent } from '../../componente/card/card.component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-
+interface Vehicle{
+  id: number,
+  vehicle: string,
+  volumetotal: number,
+  connected: number,
+  softwareUpdates: number,
+  img: string
+}
+interface Vehicles extends Array<Vehicle>{}
+interface ApiVehicle{
+  vehicles: Vehicles
+}
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  imports:[CommonModule],
+  imports:[CommonModule, CardComponent, ReactiveFormsModule],
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
@@ -16,21 +29,31 @@ export class DashboardComponent implements OnInit {
   vehicleData: any[] = [];
   searchTerm: string = '';
   dataSearchTerm: string = '';
+  carrosList: Vehicles = []
+  apiRes!: ApiVehicle;
+  totalvenda!: number;
+
 
   constructor(private apiService: ApiService) { }
+
+  selecionarCarro = new FormGroup({
+    lista: new FormControl()
+  })
+
+  chamarApiCarro(){
+    fetch("http://localhost:3001/vehicles").then(
+    async (resp)=>{
+      const carJson = await resp.json()
+      this.carrosList = carJson.vehicles
+    }
+  )
+  }
   
   ngOnInit(): void {
-    this.apiService.getVehicles().subscribe(data => {
-      this.vehicles = data;
-    });
+    this.chamarApiCarro()
 
-    this.loadVehicleData();
-  }
+    console.log(this.carrosList)
 
-  loadVehicleData(): void {
-    this.apiService.getVehicleData().subscribe(data => {
-      this.vehicleData = data;
-    });
   }
 
   onVehicleSelect(vehicle: any): void {
