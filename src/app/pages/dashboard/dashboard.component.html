@@ -2,12 +2,12 @@
     <div class="search-card card">
       <h3>Buscar Veículo</h3>
       <div style="display: flex; flex-direction: row; gap: 1rem; overflow-x: auto;">
-        <app-card titulo="Veículo">
+        <app-card titulo="Veículo" class="dash-card">
           <div class="card-form">
             <form [formGroup]="selecionarCarro">
               <select name="" id="" formControlName = "lista">
                 <option value=""></option>
-                <option *ngFor="let carro of carrosList" value ="">{{carro.vehicle}}carro</option>
+                <option *ngFor="let carro of carrosList" [value]="carro.id">{{carro.vehicle}}</option>
               </select>
             </form>
           </div>
